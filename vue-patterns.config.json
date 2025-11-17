@@ -1,0 +1,59 @@
+{
+  "rules": {
+    "composables": {
+      "enabled": true,
+      "severity": "warning",
+      "enforceNaming": true,
+      "enforceOptionsObject": true,
+      "enforceReturnReactive": true
+    },
+    "components": {
+      "enabled": true,
+      "severity": "warning",
+      "enforceSmartDumb": true,
+      "enforceListItem": true,
+      "maxComponentSize": 300
+    },
+    "antiPatterns": {
+      "enabled": true,
+      "severity": "error",
+      "detectMixins": true,
+      "detectVIfVFor": true,
+      "detectPropMutation": true,
+      "detectParentAccess": true
+    },
+    "bestPractices": {
+      "enabled": true,
+      "severity": "info",
+      "enforcePropValidation": true,
+      "enforceComputedOverMethods": true,
+      "enforceEventNaming": true,
+      "enforceScriptSetup": true
+    },
+    "template": {
+      "enabled": true,
+      "severity": "warning",
+      "enforceVForKey": true,
+      "enforcePassThrough": true
+    },
+    "optionsAPI": {
+      "enabled": true,
+      "severity": "info",
+      "detectDataPattern": true,
+      "detectMethodsPattern": true,
+      "detectComputedPattern": true,
+      "detectWatchPattern": true,
+      "detectFilters": true,
+      "detectMixins": true
+    },
+    "migration": {
+      "enabled": true,
+      "severity": "warning",
+      "warnDeprecatedFeatures": true
+    }
+  },
+  "version": {
+    "supportedVersions": ["2", "3"],
+    "autoDetect": true
+  }
+}

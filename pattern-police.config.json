@@ -1,0 +1,29 @@
+{
+  "rules": {
+    "naming": {
+      "enabled": true,
+      "severity": "warning",
+      "patterns": {
+        "classes": "PascalCase",
+        "functions": "camelCase",
+        "constants": "UPPER_CASE",
+        "variables": "camelCase"
+      }
+    },
+    "solid": {
+      "enabled": true,
+      "severity": "warning",
+      "maxFunctionLines": 50,
+      "maxClassMethods": 10,
+      "maxParameters": 5
+    },
+    "codeSmells": {
+      "enabled": true,
+      "severity": "warning",
+      "detectDuplication": true,
+      "detectLongMethods": true,
+      "detectGodClasses": true,
+      "detectDeadCode": true
+    }
+  }
+}

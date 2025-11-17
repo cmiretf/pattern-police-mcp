@@ -1,0 +1,280 @@
+{
+  "rules": {
+    "creational": {
+      "singleton": {
+        "enabled": true,
+        "severity": "info",
+        "detectAntipatterns": true,
+        "confidence": "high"
+      },
+      "factoryMethod": {
+        "enabled": true,
+        "severity": "info",
+        "detectAntipatterns": false,
+        "confidence": "medium"
+      },
+      "abstractFactory": {
+        "enabled": true,
+        "severity": "info",
+        "detectAntipatterns": false,
+        "confidence": "medium"
+      },
+      "builder": {
+        "enabled": true,
+        "severity": "info",
+        "detectAntipatterns": true,
+        "confidence": "high"
+      },
+      "prototype": {
+        "enabled": true,
+        "severity": "info",
+        "detectAntipatterns": false,
+        "confidence": "low"
+      }
+    },
+    "structural": {
+      "adapter": {
+        "enabled": true,
+        "severity": "info",
+        "detectAntipatterns": false,
+        "confidence": "medium"
+      },
+      "bridge": {
+        "enabled": true,
+        "severity": "info",
+        "detectAntipatterns": false,
+        "confidence": "low"
+      },
+      "composite": {
+        "enabled": true,
+        "severity": "info",
+        "detectAntipatterns": false,
+        "confidence": "medium"
+      },
+      "decorator": {
+        "enabled": true,
+        "severity": "info",
+        "detectAntipatterns": false,
+        "confidence": "medium"
+      },
+      "facade": {
+        "enabled": true,
+        "severity": "info",
+        "detectAntipatterns": false,
+        "confidence": "high"
+      },
+      "flyweight": {
+        "enabled": true,
+        "severity": "info",
+        "detectAntipatterns": false,
+        "confidence": "low"
+      },
+      "proxy": {
+        "enabled": true,
+        "severity": "info",
+        "detectAntipatterns": false,
+        "confidence": "medium"
+      }
+    },
+    "behavioral": {
+      "chainOfResponsibility": {
+        "enabled": true,
+        "severity": "info",
+        "detectAntipatterns": false,
+        "confidence": "medium"
+      },
+      "command": {
+        "enabled": true,
+        "severity": "info",
+        "detectAntipatterns": false,
+        "confidence": "medium"
+      },
+      "interpreter": {
+        "enabled": true,
+        "severity": "info",
+        "detectAntipatterns": false,
+        "confidence": "low"
+      },
+      "iterator": {
+        "enabled": true,
+        "severity": "info",
+        "detectAntipatterns": false,
+        "confidence": "high"
+      },
+      "mediator": {
+        "enabled": true,
+        "severity": "info",
+        "detectAntipatterns": false,
+        "confidence": "medium"
+      },
+      "memento": {
+        "enabled": true,
+        "severity": "info",
+        "detectAntipatterns": false,
+        "confidence": "medium"
+      },
+      "observer": {
+        "enabled": true,
+        "severity": "info",
+        "detectAntipatterns": false,
+        "confidence": "high"
+      },
+      "state": {
+        "enabled": true,
+        "severity": "info",
+        "detectAntipatterns": false,
+        "confidence": "medium"
+      },
+      "strategy": {
+        "enabled": true,
+        "severity": "info",
+        "detectAntipatterns": false,
+        "confidence": "high"
+      },
+      "templateMethod": {
+        "enabled": true,
+        "severity": "info",
+        "detectAntipatterns": false,
+        "confidence": "high"
+      },
+      "visitor": {
+        "enabled": true,
+        "severity": "info",
+        "detectAntipatterns": false,
+        "confidence": "low"
+      }
+    },
+    "enterprise": {
+      "dao": {
+        "enabled": true,
+        "severity": "info",
+        "detectAntipatterns": true,
+        "confidence": "high"
+      },
+      "repository": {
+        "enabled": true,
+        "severity": "info",
+        "detectAntipatterns": true,
+        "confidence": "high"
+      },
+      "dto": {
+        "enabled": true,
+        "severity": "info",
+        "detectAntipatterns": true,
+        "confidence": "high"
+      },
+      "serviceLayer": {
+        "enabled": true,
+        "severity": "info",
+        "detectAntipatterns": true,
+        "confidence": "high"
+      },
+      "factory": {
+        "enabled": true,
+        "severity": "info",
+        "detectAntipatterns": false,
+        "confidence": "high"
+      },
+      "dataMapper": {
+        "enabled": true,
+        "severity": "info",
+        "detectAntipatterns": false,
+        "confidence": "medium"
+      },
+      "activeRecord": {
+        "enabled": true,
+        "severity": "info",
+        "detectAntipatterns": false,
+        "confidence": "medium"
+      },
+      "valueObject": {
+        "enabled": true,
+        "severity": "info",
+        "detectAntipatterns": false,
+        "confidence": "high"
+      }
+    },
+    "architectural": {
+      "mvc": {
+        "enabled": true,
+        "severity": "info",
+        "detectAntipatterns": true,
+        "confidence": "high"
+      },
+      "frontController": {
+        "enabled": true,
+        "severity": "info",
+        "detectAntipatterns": false,
+        "confidence": "high"
+      },
+      "businessDelegate": {
+        "enabled": true,
+        "severity": "info",
+        "detectAntipatterns": false,
+        "confidence": "medium"
+      },
+      "sessionFacade": {
+        "enabled": true,
+        "severity": "info",
+        "detectAntipatterns": false,
+        "confidence": "medium"
+      },
+      "serviceLocator": {
+        "enabled": true,
+        "severity": "warning",
+        "detectAntipatterns": true,
+        "confidence": "medium"
+      },
+      "transferObjectAssembler": {
+        "enabled": true,
+        "severity": "info",
+        "detectAntipatterns": false,
+        "confidence": "low"
+      },
+      "compositeEntity": {
+        "enabled": true,
+        "severity": "info",
+        "detectAntipatterns": false,
+        "confidence": "low"
+      }
+    },
+    "modern": {
+      "dependencyInjection": {
+        "enabled": true,
+        "severity": "info",
+        "detectAntipatterns": true,
+        "confidence": "high"
+      },
+      "circuitBreaker": {
+        "enabled": true,
+        "severity": "info",
+        "detectAntipatterns": false,
+        "confidence": "high"
+      },
+      "saga": {
+        "enabled": true,
+        "severity": "info",
+        "detectAntipatterns": false,
+        "confidence": "medium"
+      },
+      "cqrs": {
+        "enabled": true,
+        "severity": "info",
+        "detectAntipatterns": false,
+        "confidence": "medium"
+      },
+      "eventSourcing": {
+        "enabled": true,
+        "severity": "info",
+        "detectAntipatterns": false,
+        "confidence": "medium"
+      },
+      "unitOfWork": {
+        "enabled": true,
+        "severity": "info",
+        "detectAntipatterns": false,
+        "confidence": "medium"
+      }
+    }
+  }
+}
