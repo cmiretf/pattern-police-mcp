@@ -1,6 +1,6 @@
 {
   "name": "@cmiretf/pattern-police-mcp",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "MCP Server para validación de patrones de diseño en TypeScript/JavaScript",
   "type": "module",
   "main": "dist/index.js",
@@ -23,7 +23,7 @@
     "typescript"
   ],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.4",
     "@types/node": "^22.13.11",

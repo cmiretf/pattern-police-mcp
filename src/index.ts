@@ -15,6 +15,20 @@ import { JavaPatternConfig } from "./types-java.js";
 import { VuePatternConfig } from "./types-vue.js";
 import * as fs from "fs/promises";
 import { readFileSync } from "fs";
+import { fileURLToPath } from "url";
+import { dirname, join } from "path";
+
+// Resolver la ruta del directorio del módulo actual
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// Función helper para resolver rutas de archivos de configuración
+// Busca en el directorio del paquete instalado (relativo a dist/)
+const resolveConfigPath = (filename: string): string => {
+  // Cuando se ejecuta desde npm, el archivo está en dist/index.js
+  // Los configs están en la raíz del paquete (un nivel arriba de dist/)
+  return join(__dirname, "..", filename);
+};
 
 const DEFAULT_CONFIG: PatternConfig = {
   rules: {
@@ -74,21 +88,27 @@ class PatternPoliceServer {
 
   private loadJavaValidator(): void {
     try {
-      const configData = readFileSync("java-patterns.config.json", "utf-8");
+      const configPath = resolveConfigPath("java-patterns.config.json");
+      const configData = readFileSync(configPath, "utf-8");
       const javaConfig: JavaPatternConfig = JSON.parse(configData);
       this.javaValidator = new JavaPatternValidator(javaConfig);
     } catch (error) {
-      console.error("Warning: Could not load Java validator config, Java validation disabled");
+      console.error(
+        "Warning: Could not load Java validator config, Java validation disabled"
+      );
     }
   }
 
   private loadVueValidator(): void {
     try {
-      const configData = readFileSync("vue-patterns.config.json", "utf-8");
+      const configPath = resolveConfigPath("vue-patterns.config.json");
+      const configData = readFileSync(configPath, "utf-8");
       const vueConfig: VuePatternConfig = JSON.parse(configData);
       this.vueValidator = new VuePatternValidator(vueConfig);
     } catch (error) {
-      console.error("Warning: Could not load Vue validator config, Vue validation disabled");
+      console.error(
+        "Warning: Could not load Vue validator config, Vue validation disabled"
+      );
     }
   }
 
@@ -239,7 +259,8 @@ class PatternPoliceServer {
           properties: {
             code: {
               type: "string",
-              description: "Código Vue.js (SFC - Single File Component) a analizar",
+              description:
+                "Código Vue.js (SFC - Single File Component) a analizar",
             },
             filename: {
               type: "string",
@@ -321,7 +342,9 @@ class PatternPoliceServer {
         content: [
           {
             type: "text",
-            text: `❌ Error al leer el archivo: ${error instanceof Error ? error.message : "Error desconocido"}`,
+            text: `❌ Error al leer el archivo: ${
+              error instanceof Error ? error.message : "Error desconocido"
+            }`,
           },
         ],
         isError: true,
@@ -334,7 +357,9 @@ class PatternPoliceServer {
     let response = `## Pattern Police - Patrones Configurados\n\n`;
 
     response += `### 1. Naming Conventions\n`;
-    response += `- Estado: ${config.rules.naming.enabled ? "✅ Activo" : "❌ Inactivo"}\n`;
+    response += `- Estado: ${
+      config.rules.naming.enabled ? "✅ Activo" : "❌ Inactivo"
+    }\n`;
     response += `- Severidad: ${config.rules.naming.severity}\n`;
     response += `- Patrones:\n`;
     response += `  - Clases: ${config.rules.naming.patterns.classes}\n`;
@@ -343,7 +368,9 @@ class PatternPoliceServer {
     response += `  - Variables: ${config.rules.naming.patterns.variables}\n\n`;
 
     response += `### 2. Principios SOLID\n`;
-    response += `- Estado: ${config.rules.solid.enabled ? "✅ Activo" : "❌ Inactivo"}\n`;
+    response += `- Estado: ${
+      config.rules.solid.enabled ? "✅ Activo" : "❌ Inactivo"
+    }\n`;
     response += `- Severidad: ${config.rules.solid.severity}\n`;
     response += `- Límites:\n`;
     response += `  - Máx. líneas por función: ${config.rules.solid.maxFunctionLines}\n`;
@@ -351,13 +378,23 @@ class PatternPoliceServer {
     response += `  - Máx. parámetros: ${config.rules.solid.maxParameters}\n\n`;
 
     response += `### 3. Code Smells\n`;
-    response += `- Estado: ${config.rules.codeSmells.enabled ? "✅ Activo" : "❌ Inactivo"}\n`;
+    response += `- Estado: ${
+      config.rules.codeSmells.enabled ? "✅ Activo" : "❌ Inactivo"
+    }\n`;
     response += `- Severidad: ${config.rules.codeSmells.severity}\n`;
     response += `- Detecta:\n`;
-    response += `  - Código duplicado: ${config.rules.codeSmells.detectDuplication ? "✅" : "❌"}\n`;
-    response += `  - Métodos largos: ${config.rules.codeSmells.detectLongMethods ? "✅" : "❌"}\n`;
-    response += `  - God Classes: ${config.rules.codeSmells.detectGodClasses ? "✅" : "❌"}\n`;
-    response += `  - Código muerto: ${config.rules.codeSmells.detectDeadCode ? "✅" : "❌"}\n`;
+    response += `  - Código duplicado: ${
+      config.rules.codeSmells.detectDuplication ? "✅" : "❌"
+    }\n`;
+    response += `  - Métodos largos: ${
+      config.rules.codeSmells.detectLongMethods ? "✅" : "❌"
+    }\n`;
+    response += `  - God Classes: ${
+      config.rules.codeSmells.detectGodClasses ? "✅" : "❌"
+    }\n`;
+    response += `  - Código muerto: ${
+      config.rules.codeSmells.detectDeadCode ? "✅" : "❌"
+    }\n`;
 
     return {
       content: [{ type: "text", text: response }],
@@ -410,10 +447,12 @@ class PatternPoliceServer {
   private async handleValidateJavaCode(args: any) {
     if (!this.javaValidator) {
       return {
-        content: [{
-          type: "text",
-          text: "❌ Validador Java no disponible. Verifica que java-patterns.config.json existe."
-        }],
+        content: [
+          {
+            type: "text",
+            text: "❌ Validador Java no disponible. Verifica que java-patterns.config.json existe.",
+          },
+        ],
         isError: true,
       };
     }
@@ -460,10 +499,12 @@ class PatternPoliceServer {
   private async handleValidateJavaFile(args: any) {
     if (!this.javaValidator) {
       return {
-        content: [{
-          type: "text",
-          text: "❌ Validador Java no disponible. Verifica que java-patterns.config.json existe."
-        }],
+        content: [
+          {
+            type: "text",
+            text: "❌ Validador Java no disponible. Verifica que java-patterns.config.json existe.",
+          },
+        ],
         isError: true,
       };
     }
@@ -475,10 +516,14 @@ class PatternPoliceServer {
       return this.handleValidateJavaCode({ code, filename: filepath });
     } catch (error) {
       return {
-        content: [{
-          type: "text",
-          text: `❌ Error al leer el archivo: ${error instanceof Error ? error.message : "Error desconocido"}`
-        }],
+        content: [
+          {
+            type: "text",
+            text: `❌ Error al leer el archivo: ${
+              error instanceof Error ? error.message : "Error desconocido"
+            }`,
+          },
+        ],
         isError: true,
       };
     }
@@ -558,16 +603,21 @@ class PatternPoliceServer {
   private async handleValidateVueCode(args: any) {
     if (!this.vueValidator) {
       return {
-        content: [{
-          type: "text",
-          text: "❌ Validador Vue no disponible. Verifica que vue-patterns.config.json existe."
-        }],
+        content: [
+          {
+            type: "text",
+            text: "❌ Validador Vue no disponible. Verifica que vue-patterns.config.json existe.",
+          },
+        ],
         isError: true,
       };
     }
 
     const { code, filename = "Component.vue" } = args;
-    const { detections, violations } = this.vueValidator.validate(code, filename);
+    const { detections, violations } = this.vueValidator.validate(
+      code,
+      filename
+    );
 
     let response = `## Pattern Police Vue.js - Análisis de Patrones\n\n`;
     response += `📁 Archivo: ${filename}\n`;
@@ -576,7 +626,7 @@ class PatternPoliceServer {
 
     if (detections.length > 0) {
       response += `### 🎯 Patrones Detectados\n\n`;
-      
+
       const byCategory = detections.reduce((acc, d) => {
         if (!acc[d.category]) acc[d.category] = [];
         acc[d.category].push(d);
@@ -594,31 +644,40 @@ class PatternPoliceServer {
       Object.entries(byCategory).forEach(([category, patterns]) => {
         response += `#### ${categoryNames[category] || category}\n\n`;
         patterns.forEach((p, idx) => {
-          const confidenceIcon = p.confidence === 'high' ? '🟢' : p.confidence === 'medium' ? '🟡' : '🟠';
-          response += `${idx + 1}. ${confidenceIcon} **${p.pattern}** (${p.componentName})\n`;
-          response += `   📍 Ubicación: Línea ${p.location.line}${p.location.block ? ` (${p.location.block})` : ''}\n`;
-          
+          const confidenceIcon =
+            p.confidence === "high"
+              ? "🟢"
+              : p.confidence === "medium"
+              ? "🟡"
+              : "🟠";
+          response += `${idx + 1}. ${confidenceIcon} **${p.pattern}** (${
+            p.componentName
+          })\n`;
+          response += `   📍 Ubicación: Línea ${p.location.line}${
+            p.location.block ? ` (${p.location.block})` : ""
+          }\n`;
+
           if (p.evidence && p.evidence.length > 0) {
             response += `   ✓ Evidencia:\n`;
             p.evidence.forEach((e: string) => {
               response += `     - ${e}\n`;
             });
           }
-          
+
           if (p.antiPatterns && p.antiPatterns.length > 0) {
             response += `   ⚠️  Anti-patrones detectados:\n`;
             p.antiPatterns.forEach((a: string) => {
               response += `     - ${a}\n`;
             });
           }
-          
+
           if (p.suggestions && p.suggestions.length > 0) {
             response += `   💡 Sugerencias:\n`;
             p.suggestions.forEach((s: string) => {
               response += `     - ${s}\n`;
             });
           }
-          
+
           response += `\n`;
         });
       });
@@ -626,17 +685,24 @@ class PatternPoliceServer {
 
     if (violations.length > 0) {
       response += `### ⚠️  Violaciones y Anti-patrones\n\n`;
-      
+
       violations.forEach((v, idx) => {
-        const icon = v.severity === 'error' ? '❌' : v.severity === 'warning' ? '⚠️' : 'ℹ️';
+        const icon =
+          v.severity === "error"
+            ? "❌"
+            : v.severity === "warning"
+            ? "⚠️"
+            : "ℹ️";
         response += `${idx + 1}. ${icon} **${v.rule}** (${v.severity})\n`;
-        response += `   📍 Línea: ${v.location.line}${v.location.block ? ` (${v.location.block})` : ''}\n`;
+        response += `   📍 Línea: ${v.location.line}${
+          v.location.block ? ` (${v.location.block})` : ""
+        }\n`;
         response += `   📝 ${v.message}\n`;
-        
+
         if (v.suggestion) {
           response += `   💡 Sugerencia: ${v.suggestion}\n`;
         }
-        
+
         response += `\n`;
       });
     }
@@ -654,34 +720,41 @@ class PatternPoliceServer {
   private async handleValidateVueFile(args: any) {
     if (!this.vueValidator) {
       return {
-        content: [{
-          type: "text",
-          text: "❌ Validador Vue no disponible. Verifica que vue-patterns.config.json exists."
-        }],
+        content: [
+          {
+            type: "text",
+            text: "❌ Validador Vue no disponible. Verifica que vue-patterns.config.json exists.",
+          },
+        ],
         isError: true,
       };
     }
 
     const { filepath } = args;
 
-    if (!filepath || typeof filepath !== 'string') {
+    if (!filepath || typeof filepath !== "string") {
       return {
-        content: [{
-          type: "text",
-          text: "❌ Error: Se requiere el parámetro 'filepath' (ruta del archivo).\n\n💡 ¿Quieres validar código directamente? Usa 'validate_vue_code' en su lugar."
-        }],
+        content: [
+          {
+            type: "text",
+            text: "❌ Error: Se requiere el parámetro 'filepath' (ruta del archivo).\n\n💡 ¿Quieres validar código directamente? Usa 'validate_vue_code' en su lugar.",
+          },
+        ],
         isError: true,
       };
     }
 
-    if (filepath.includes('<template>') || filepath.includes('<script>')) {
+    if (filepath.includes("<template>") || filepath.includes("<script>")) {
       return {
-        content: [{
-          type: "text",
-          text: "❌ Error: Parece que pasaste el CONTENIDO del archivo en lugar de la RUTA.\n\n" +
-               "Para validar código directamente, usa la herramienta 'validate_vue_code' con el parámetro 'code'.\n" +
-               "Para validar un archivo del sistema, usa 'validate_vue_file' con el parámetro 'filepath' (ej: './components/MyComponent.vue')."
-        }],
+        content: [
+          {
+            type: "text",
+            text:
+              "❌ Error: Parece que pasaste el CONTENIDO del archivo en lugar de la RUTA.\n\n" +
+              "Para validar código directamente, usa la herramienta 'validate_vue_code' con el parámetro 'code'.\n" +
+              "Para validar un archivo del sistema, usa 'validate_vue_file' con el parámetro 'filepath' (ej: './components/MyComponent.vue').",
+          },
+        ],
         isError: true,
       };
     }
@@ -690,12 +763,15 @@ class PatternPoliceServer {
       const code = await fs.readFile(filepath, "utf-8");
       return this.handleValidateVueCode({ code, filename: filepath });
     } catch (error) {
-      const errorMsg = error instanceof Error ? error.message : "Error desconocido";
+      const errorMsg =
+        error instanceof Error ? error.message : "Error desconocido";
       return {
-        content: [{
-          type: "text",
-          text: `❌ Error al leer el archivo: ${errorMsg}\n\n💡 Verifica que la ruta sea correcta. Si quieres validar código directamente, usa 'validate_vue_code' en su lugar.`
-        }],
+        content: [
+          {
+            type: "text",
+            text: `❌ Error al leer el archivo: ${errorMsg}\n\n💡 Verifica que la ruta sea correcta. Si quieres validar código directamente, usa 'validate_vue_code' en su lugar.`,
+          },
+        ],
         isError: true,
       };
     }
