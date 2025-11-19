@@ -44,7 +44,35 @@ Add to your `claude_desktop_config.json`:
   "mcpServers": {
     "pattern-police": {
       "command": "npx",
-      "args": ["-y", "pattern-police-mcp"]
+      "args": ["-y", "@cmiretf/pattern-police-mcp"]
+    }
+  }
+}
+```
+
+Or with a local installation:
+
+```json
+{
+  "mcpServers": {
+    "pattern-police": {
+      "command": "node",
+      "args": ["/path/to/node_modules/pattern-police-mcp/dist/index.js"]
+    }
+  }
+}
+```
+
+#### With Visual Studio Code / Cursor
+
+Add to your `mcp.json`:
+
+```json
+{
+  "servers": {
+    "pattern-police": {
+      "command": "npx",
+      "args": ["-y", "@cmiretf/pattern-police-mcp"]
     }
   }
 }
