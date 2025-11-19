@@ -355,7 +355,37 @@ Contributions are welcome! Please:
 
 ## 📝 License
 
-ISC
+This project is licensed under the **MIT License** - an open source license that allows you to use, modify, and distribute this software freely.
+
+### What this means:
+
+- ✅ **Free to use**: You can use this software in any project, commercial or personal
+- ✅ **Open source**: The source code is publicly available and can be inspected, modified, and improved
+- ✅ **Modify freely**: You can adapt the code to fit your specific needs
+- ✅ **Distribute**: You can share the original or modified versions
+- ✅ **Private use**: You can use it in proprietary projects without disclosing your source code
+
+### License Text
+
+Copyright (c) 2025 Carlos Miret Fiuza
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
 ## 🔍 Severity Levels
 
