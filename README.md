@@ -332,7 +332,7 @@ npx pattern-police-mcp validate-files $(git diff --cached --name-only)
 # GitHub Actions example
 - name: Validate Code Patterns
   run: |
-    npm install -g pattern-police-mcp
+    npm install -g @cmiretf/pattern-police-mcp
     pattern-police validate-all
 ```
 
