@@ -1,9 +1,14 @@
 {
   "name": "@cmiretf/pattern-police-mcp",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "MCP Server para validación de patrones de diseño en TypeScript/JavaScript",
   "type": "module",
   "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cmiretf/pattern-police-mcp"
+  },
+  "homepage": "https://github.com/cmiretf/pattern-police-mcp/blob/main/README.md",
   "bin": {
     "pattern-police": "./dist/index.js"
   },
