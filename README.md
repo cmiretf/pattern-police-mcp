@@ -25,7 +25,7 @@ npm install @cmiretf/pattern-police-mcp
 Test the server interactively:
 
 ```bash
-npm install -g pattern-police-mcp
+npm install -g @cmiretf/pattern-police-mcp
 npx @modelcontextprotocol/inspector pattern-police
 ```
 
